@@ -1,0 +1,64 @@
+package package01;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class MyExceptionTest {
+    int maxSubjects;
+    int[] marks;
+    int total;
+    double avg;
+
+    public MyExceptionTest() {
+       this.maxSubjects=0;
+       this.total=0;
+       this.avg=0;
+    }
+
+    void Calculation(){
+        try {
+            Scanner sn = new Scanner(System.in);
+            System.out.print("Enter num of  subjects:");
+            this.maxSubjects = sn.nextInt();
+            this.marks= new int[maxSubjects];
+            for (int i = 0; i < this.maxSubjects; i++) {
+                System.out.print("Enter sub "+ (i+1)+" marks");
+                this.marks[i] = sn.nextInt();
+                this.total = this.total + this.marks[i];
+            }
+            this.avg = (double)this.total / this.maxSubjects;
+            System.out.println("Avg mark is " + this.avg);
+
+            System.out.print("Enter num 1 to division");
+            int n01 = sn.nextInt();
+            System.out.print("Enter num 2 to division");
+            int nu02 = sn.nextInt();
+            System.out.println("the division is " + division(n01, nu02));
+
+            System.out.print("input array index");
+            int arrayIndexNo =sn.nextInt();
+            int mark=getValue(arrayIndexNo);
+            System.out.println("Array index mark is" +mark);
+        }
+
+        catch (InputMismatchException e){
+            System.out.println("This is missmatch data type");
+        }catch (ArithmeticException e){
+            System.out.println("This is wrong arithmetic");
+        }catch (ArrayIndexOutOfBoundsException e){
+            System.out.println("Array out of limit");
+        }catch (Exception e){
+            System.out.println("this is a error");
+        }
+    }
+
+    int getValue(int arrayIndex) {
+       return this.marks[arrayIndex];
+    }
+
+    int division(int no1, int no2) {
+        return no1/no2;
+    }
+
+
+}
